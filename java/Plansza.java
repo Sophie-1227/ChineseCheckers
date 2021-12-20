@@ -28,6 +28,10 @@ public class Plansza extends JPanel{
         }
         ustawCzerwone();
         ustawZielone();
+        ustawBrown();
+        ustawFioletowe();
+        ustawNiebieskie();
+        ustawPomaranczowy();
     }
 
     private void uzupelnijDostepnePola() {
@@ -95,17 +99,17 @@ public class Plansza extends JPanel{
         uzywanePola[15][3].ustawPionek(Color.RED);
     }
 
-    private void ustawBiale() {
-        uzywanePola[0][4].ustawPionek(Color.WHITE);
-        uzywanePola[1][5].ustawPionek(Color.WHITE);
-        uzywanePola[2][4].ustawPionek(Color.WHITE);
-        uzywanePola[2][6].ustawPionek(Color.WHITE);
-        uzywanePola[3][5].ustawPionek(Color.WHITE);
-        uzywanePola[3][7].ustawPionek(Color.WHITE);
-        uzywanePola[4][4].ustawPionek(Color.WHITE);
-        uzywanePola[4][6].ustawPionek(Color.WHITE);
-        uzywanePola[5][5].ustawPionek(Color.WHITE);
-        uzywanePola[6][4].ustawPionek(Color.WHITE);
+    private void ustawBrown() {
+        uzywanePola[0][4].ustawPionek(new Color(102, 53, 0));
+        uzywanePola[1][5].ustawPionek(new Color(102, 53, 0));
+        uzywanePola[2][4].ustawPionek(new Color(102, 53, 0));
+        uzywanePola[2][6].ustawPionek(new Color(102, 53, 0));
+        uzywanePola[3][5].ustawPionek(new Color(102, 53, 0));
+        uzywanePola[3][7].ustawPionek(new Color(102, 53, 0));
+        uzywanePola[4][4].ustawPionek(new Color(102, 53, 0));
+        uzywanePola[4][6].ustawPionek(new Color(102, 53, 0));
+        uzywanePola[5][5].ustawPionek(new Color(102, 53, 0));
+        uzywanePola[6][4].ustawPionek(new Color(102, 53, 0));
     }
 
     private void ustawZielone() {
@@ -119,6 +123,45 @@ public class Plansza extends JPanel{
         uzywanePola[13][15].ustawPionek(new Color(0, 153, 0));
         uzywanePola[14][14].ustawPionek(new Color(0, 153, 0));
         uzywanePola[15][13].ustawPionek(new Color(0, 153, 0));
+    }
+
+    private void ustawFioletowe(){
+        uzywanePola[24][12].ustawPionek(new Color(102, 0, 153));
+        uzywanePola[23][11].ustawPionek(new Color(102, 0, 153));
+        uzywanePola[22][10].ustawPionek(new Color(102, 0, 153));
+        uzywanePola[22][12].ustawPionek(new Color(102, 0, 153));
+        uzywanePola[21][11].ustawPionek(new Color(102, 0, 153));
+        uzywanePola[21][9].ustawPionek(new Color(102, 0, 153));
+        uzywanePola[20][10].ustawPionek(new Color(102, 0, 153));
+        uzywanePola[20][12].ustawPionek(new Color(102, 0, 153));
+        uzywanePola[19][11].ustawPionek(new Color(102, 0, 153));
+        uzywanePola[18][12].ustawPionek(new Color(102, 0, 153));
+    }
+
+    private void ustawNiebieskie(){
+        uzywanePola[0][12].ustawPionek(Color.BLUE);
+        uzywanePola[1][11].ustawPionek(Color.BLUE);
+        uzywanePola[2][10].ustawPionek(Color.BLUE);
+        uzywanePola[2][12].ustawPionek(Color.BLUE);
+        uzywanePola[3][11].ustawPionek(Color.BLUE);
+        uzywanePola[3][9].ustawPionek(Color.BLUE);
+        uzywanePola[4][12].ustawPionek(Color.BLUE);
+        uzywanePola[4][10].ustawPionek(Color.BLUE);
+        uzywanePola[5][11].ustawPionek(Color.BLUE);
+        uzywanePola[6][12].ustawPionek(Color.BLUE);
+    }
+
+    private void ustawPomaranczowy(){
+        uzywanePola[24][4].ustawPionek(Color.ORANGE);
+        uzywanePola[23][5].ustawPionek(Color.ORANGE);
+        uzywanePola[22][4].ustawPionek(Color.ORANGE);
+        uzywanePola[22][6].ustawPionek(Color.ORANGE);
+        uzywanePola[21][5].ustawPionek(Color.ORANGE);
+        uzywanePola[21][7].ustawPionek(Color.ORANGE);
+        uzywanePola[20][4].ustawPionek(Color.ORANGE);
+        uzywanePola[20][6].ustawPionek(Color.ORANGE);
+        uzywanePola[19][5].ustawPionek(Color.ORANGE);
+        uzywanePola[18][4].ustawPionek(Color.ORANGE);
     }
 
 
