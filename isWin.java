@@ -80,16 +80,16 @@ public class isWin{
            output.println("MESSAGE wygrana gracza brazowego");
 
            
-        }else if(plansza.uzywanePola[0][4].zwrocPionek().getColor().equals(Color.BLUE) &&  
-                 plansza.uzywanePola[1][5].zwrocPionek().getColor().equals(Color.BLUE) &&
-                 plansza.uzywanePola[2][4].zwrocPionek().getColor().equals(Color.BLUE) &&
-                 plansza.uzywanePola[2][6].zwrocPionek().getColor().equals(Color.BLUE) &&
-                 plansza.uzywanePola[3][5].zwrocPionek().getColor().equals(Color.BLUE) &&
-                 plansza.uzywanePola[3][7].zwrocPionek().getColor().equals(Color.BLUE) &&
-                 plansza.uzywanePola[4][4].zwrocPionek().getColor().equals(Color.BLUE) &&
-                 plansza.uzywanePola[4][6].zwrocPionek().getColor().equals(Color.BLUE) &&
-                 plansza.uzywanePola[5][5].zwrocPionek().getColor().equals(Color.BLUE) &&
-                 plansza.uzywanePola[6][4].zwrocPionek().getColor().equals(Color.BLUE)){
+        }else if(plansza.uzywanePola[0][4].zwrocPionek().getColor().equals(new Color(102, 0, 153)) &&  
+                 plansza.uzywanePola[1][5].zwrocPionek().getColor().equals(new Color(102, 0, 153)) &&
+                 plansza.uzywanePola[2][4].zwrocPionek().getColor().equals(new Color(102, 0, 153)) &&
+                 plansza.uzywanePola[2][6].zwrocPionek().getColor().equals(new Color(102, 0, 153)) &&
+                 plansza.uzywanePola[3][5].zwrocPionek().getColor().equals(new Color(102, 0, 153)) &&
+                 plansza.uzywanePola[3][7].zwrocPionek().getColor().equals(new Color(102, 0, 153)) &&
+                 plansza.uzywanePola[4][4].zwrocPionek().getColor().equals(new Color(102, 0, 153)) &&
+                 plansza.uzywanePola[4][6].zwrocPionek().getColor().equals(new Color(102, 0, 153)) &&
+                 plansza.uzywanePola[5][5].zwrocPionek().getColor().equals(new Color(102, 0, 153)) &&
+                 plansza.uzywanePola[6][4].zwrocPionek().getColor().equals(new Color(102, 0, 153))){
 
            //Wygrana gracza fioletowego
            output.println("MESSAGE wygrana gracza fioletowego");
