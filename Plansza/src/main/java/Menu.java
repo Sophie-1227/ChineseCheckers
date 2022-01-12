@@ -2,11 +2,10 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.Provider.Service;
 
 public class Menu {
-	
-	public static int liczbaGraczy;
-	
+
     public Menu(){
         JFrame frame = new JFrame("Main Menu");
         Container pane = frame.getContentPane();
@@ -27,6 +26,8 @@ public class Menu {
             new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
+                    Server server = new Server();
+                    server.setLiczbaGraczy(2);
                     frame.setVisible(false);
                 }
             }
@@ -36,7 +37,8 @@ public class Menu {
             new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
-                	liczbaGraczy = 3;
+                    Server server = new Server();
+                    server.setLiczbaGraczy(3);
                 	frame.setVisible(false);
                 }
             }
@@ -46,7 +48,8 @@ public class Menu {
             new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
-                	liczbaGraczy = 4;
+                    Server server = new Server();
+                    server.setLiczbaGraczy(4);
                 	frame.setVisible(false);
                 }
             }
@@ -56,7 +59,8 @@ public class Menu {
             new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
-                	liczbaGraczy = 6;
+                    Server server = new Server();
+                	server.setLiczbaGraczy(6);
                 	frame.setVisible(false);
                 }
             }

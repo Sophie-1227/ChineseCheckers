@@ -8,9 +8,13 @@ public class Pole extends JPanel implements MouseInputListener, MouseMotionListe
 	
 	private Pionek pionek;
 	private Plansza mojaPlansza;
+	private int x;
+	private int y;
 	
 	
-	public Pole(Plansza plansza) {
+	public Pole(Plansza plansza, int x, int y) {
+		this.x = x;
+		this.y = y;
 		this.pionek = null;
 		this.mojaPlansza = plansza;
 	    addMouseListener(this);
@@ -69,6 +73,7 @@ public class Pole extends JPanel implements MouseInputListener, MouseMotionListe
 		if(!mojaPlansza.czyPionekPodniesiony()) {
 			if(!this.czyPuste()) {
 				mojaPlansza.podniesPionek(this.pionek.kopiujPionek());
+				mojaPlansza.setStart(x, y);
 				usunPionek();
 				repaint();
 			}
@@ -77,6 +82,8 @@ public class Pole extends JPanel implements MouseInputListener, MouseMotionListe
 			if(this.czyPuste()) {
 				ustawPionek(this.mojaPlansza.zwrocPodniesiony());
 				this.mojaPlansza.odstawPionek();
+				mojaPlansza.setEnd(x, y);
+				mojaPlansza.powiadomKlienta();
 				repaint();
 			}
 		}

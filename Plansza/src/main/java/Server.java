@@ -2,16 +2,24 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.util.Date;
+import java.util.concurrent.Executors;
+
 
 public class Server {
 	
+	static int liczbaGraczy;
+	
+	public void setLiczbaGraczy(int n) {
+		this.liczbaGraczy = n;
+	}
+
 	
     public static void main(String[] args) throws IOException {
     	
-    	int liczbaGraczy = 4;
-    	Plansza plansza = new Plansza();
     	
-    	if(liczbaGraczy == 2) {
+        	
+    	
+    	/*if(liczbaGraczy == 2) {
     		plansza.ustawCzerwone();
     		plansza.ustawZielone();
     	} else if(liczbaGraczy == 3) {
@@ -30,23 +38,37 @@ public class Server {
     		plansza.ustawZielone();
     		plansza.ustawFioletowe();
     		plansza.ustawBrazowe();	
-    	}
+    	}*/
     	
+    	Menu menu = new Menu();
+    	try {
+			System.out.println(liczbaGraczy);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
         try (var listener = new ServerSocket(59090)) {
             System.out.println("The server is running...");
-            //Menu menu = new Menu();
-            //liczbaGraczy = menu.liczbaGraczy;
-            //System.out.println("Wybrano " + liczbaGraczy); 
+            
+            var pool = Executors.newFixedThreadPool(200);
+            // Dodawanie dwoch graczy
             while (true) {
-            	// Serwer nasluchuje i akceptuje polaczenia klientow
+                Gra2 gra = new Gra2();
+                pool.execute(gra.new Player(listener.accept(), "Czerwony"));
+                pool.execute(gra.new Player(listener.accept(), "Zielony"));
+            }
+            
+            
+            /*while (true) {
+            	
                 try (var socket = listener.accept()) {
-                	// Ustawienie kanalu komunikacyjnego z serwera do klienta
+             
                     var out = new PrintWriter(socket.getOutputStream(), true);
-                    // Wyslanie do klienta aktualnej daty
+                  
                     out.println(new Date().toString());
                 }
-            }
+            }*/
         }
-    }
+    }   
 }

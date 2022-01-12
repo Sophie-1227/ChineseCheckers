@@ -13,7 +13,9 @@ public class Plansza extends JPanel implements MouseInputListener, MouseMotionLi
 	private Pole[][] uzywanePola;
 	protected Pionek podniesionyPionek;
 	private Ellipse2D ruszanyPionek;
-	private int x, y;
+	private int x1, y1, x2, y2;
+	private Client client;
+	
 	
 	public Plansza() {
 		podniesionyPionek = null;
@@ -32,14 +34,34 @@ public class Plansza extends JPanel implements MouseInputListener, MouseMotionLi
 				}
 			}
 		}
-		//ustawCzerwone();
-		//ustawZielone();
-		//ustawBrazowe();
-		//ustawFioletowe();
-		//ustawPomaranczowy();
-		//ustawNiebieskie();
+
 		addMouseListener(this);
 		addMouseMotionListener(this);
+	}
+	
+	public void powiadomKlienta() {
+		this.client.wyslijRuch(x1, y1, x2, y2);
+	}
+	
+	public void setClient(Client client) {
+		this.client = client;
+	}
+	
+	public void setStart(int x1, int y1) {
+		this.x1 = x1;
+		this.y1 = y1;
+	}
+	
+	public void setEnd(int x2, int y2) {
+		this.x2 = x2;
+		this.y2 = y2;
+	}
+	
+	public void move(int x1, int y1, int x2, int y2) {
+		Color color = uzywanePola[x1][y1].zwrocPionek().getColor();
+		uzywanePola[x1][y1].usunPionek();
+		uzywanePola[x2][y2].ustawPionek(color);
+		repaint();
 	}
 	
 	private void uzupelnijDostepnePola() {
@@ -57,7 +79,47 @@ public class Plansza extends JPanel implements MouseInputListener, MouseMotionLi
 		for(int i=0; i<=16; i++) {
 			for(int j=0; j<=24; j++) {
 				if(this.dostepnePola[j][i]) {
-					this.uzywanePola[j][i] = new Pole(this);
+					this.uzywanePola[j][i] = new Pole(this, j, i);  
+				}
+			}
+		}
+	}
+	
+	public void blokujPola(Color color) {
+		
+		for(int i=0; i<=16; i++) {
+			for(int j=0; j<=24; j++) {
+				if(this.uzywanePola[j][i] != null) {
+					if(this.uzywanePola[j][i].zwrocPionek() != null && this.uzywanePola[j][i].zwrocPionek().getColor() != color) {
+						this.uzywanePola[j][i].removeMouseListener(this.uzywanePola[j][i]);
+						this.uzywanePola[j][i].addMouseListener(new IgnoreMouseListener());
+					}
+				}
+			}
+		}
+	}
+	
+	public void blokujWszystkiePola() {
+		
+		for(int i=0; i<=16; i++) {
+			for(int j=0; j<=24; j++) {
+				if(this.uzywanePola[j][i] != null) {
+					if(this.uzywanePola[j][i].zwrocPionek() != null) {
+						this.uzywanePola[j][i].removeMouseListener(this.uzywanePola[j][i]);
+					}
+				}
+			}
+		}
+	}
+	
+	public void odblokujPola(Color color) {
+		
+		for(int i=0; i<=16; i++) {
+			for(int j=0; j<=24; j++) {
+				if(this.uzywanePola[j][i] != null) {
+					if(this.uzywanePola[j][i].zwrocPionek() != null && this.uzywanePola[j][i].zwrocPionek().getColor() == color) {
+						this.uzywanePola[j][i].addMouseListener(this.uzywanePola[j][i]);
+					}
 				}
 			}
 		}
