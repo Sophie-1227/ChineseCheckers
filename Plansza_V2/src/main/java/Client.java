@@ -6,16 +6,39 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
+/**
+*Klasa Klienta zawiera prywatne plansze graczy
+*Komunikuje się ona z serverem przekazując wzajemne ruchy między graczami
+@SystemRequirment Architektura typu klient-server (klasa client)
+*/
+
 public class Client {
 	
-	private Plansza plansza;
-	private JLabel messages = new JLabel();
+	/**
+	*Parametry klasy Client
+	@param plansza obiekt typu Plansza dla klienta
+	@param socket 
+	@param in Scanner to read insert form user
+	@param out PrintWriter to give feedback to user
+	@param color
+	@param messages Jlabel do wyswietlania wiadomosci
+	@param okno Jframe w ktorej wyslwietlamy plansze gracza
+	*/
+	
+    private Plansza plansza;
+    private JLabel messages = new JLabel();
     private Socket socket;
     private Scanner in;
     private PrintWriter out;
     private JFrame okno = new JFrame("Chińskie warcaby");
     private Color color;
     
+	/**
+	*Tworzenie polaczenia klient-server
+	@see Server.java
+	@see ServerRun
+	*/
+	
     public Client(String adres) {
     	
     	try {
@@ -42,10 +65,18 @@ public class Client {
     	
     	
     }
+	/**
+	*Sprawdzanie koloru danego pola na planszy
+	@return kolor wybranego pola planszy
+	*/
     
     public Color getColor() {
     	return this.color;
     }
+	/**
+	*Przypisanie danemu klientowi koloru na podstawie losowania
+	@SystemRequirement losowość koloru gracza
+	*/
     
     private void setColor(String s) {
     	if(s.startsWith("Czerwony")) {
@@ -63,9 +94,29 @@ public class Client {
     	}
     }
     
+	/**
+	*Przesłanie ruchu do servera, który rozsyła go pozostałym graczom
+	@see Plansza.java
+	@see feature powiadomKlienta
+	@see feature move
+	@see feature processmoveCommand
+	*/
+	
     public void wyslijRuch(int x1, int y1, int x2, int y2) {
     	out.println("MOVE " + x1 + " " + y1 + " " + x2 + " " + y2);
     }
+	
+	/**
+	*metody przygotowujące planszę pod różne ilości graczy
+	@SystemRequirenment możliwość gry z różną ilością graczy
+	@see Plansza.java
+	@see feature ustawCzerwone
+	@see feature ustawBrazowe 
+	@see feature ustawZielone
+	@see feature ustawFioletowe
+	@see feature ustawNiebieskie
+	@see feature ustawPomaranczowy
+	*/
     
     private void setup2() {
 		plansza.ustawCzerwone();
@@ -93,6 +144,12 @@ public class Client {
 		plansza.ustawFioletowe();
 		plansza.ustawBrazowe();	
     }
+	
+	/**
+	*Wewnetrzna metoda move
+	@see Plansza.java
+	@see feature move
+	*/
     
     private void move(int x1, int y1, int x2, int y2) {
     	this.plansza.move(x1, y1, x2, y2);
@@ -102,8 +159,16 @@ public class Client {
     	this.messages.setText(messageText);
     }
     
+	/**
+	*Główna metoda klasy Client uruchamiająca właściwą grę
+	@exception java.net.UnknownHostException;
+	*/
+	
     public void play() throws Exception {
-        try {
+        try { 
+	/**
+	*Komunikaty z servera
+	*/
         	// komunikat z serwera
             String response = in.nextLine();
             //char mark = response.charAt(8);
@@ -182,6 +247,12 @@ public class Client {
         }
     }
 	
+	/**
+	*Uruchamiamy okno aplikacji dla klienta
+	*Ma ono z góry ustalony, niezmienialny rozmiar
+	*Poniższa metoda wyświetla nam onko indywidualne gracza
+	@exception java.net.UnknownHostException;
+	*/
 	
     public static void main(String[] args) throws Exception {
 
