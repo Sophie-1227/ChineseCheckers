@@ -68,6 +68,16 @@ public class Gra {
     	return null;
     }
 	
+	/**
+	*Sprawdzanie ruvhu tylko w przypadku skoku!
+	*Metoda sprawdzająca poprawność wykonanego ruchu
+	*Sprawdzamy wszystkie możliwości, gdzie legalnie mogliśmy postawić pionek
+	*Patrzymy czy któraś zgadza się z polem, które wybraliśmy
+	*Na koniec zwracamy wartość bool p1 lub p2 lub p3 itd
+	*Co oznacza, że jeśli jedna z nich jest prawdziwa to dostaniemy tru (jako ruch poprawny)
+	@return 
+	*/
+	
 	protected boolean sprawdzSkok(int x1, int y1, int x2, int y2) {
 	
 	if((Math.abs(x1-x2) == 2 && Math.abs(y1-y2) == 2) && (plansza.czyJestPionek((x1+x2)/2, (y1+y2)/2)) ) {
