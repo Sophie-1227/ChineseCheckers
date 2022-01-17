@@ -1,6 +1,16 @@
 import java.awt.*;
 import javax.swing.*;
 
+/**
+*To jest klasa główna aplikacji typu klient-server pozwalającej na grę w chińskie warcaby
+*Grać można w 2,3,4 lub 6 osób
+*W tej klasie tworzymy podstawowe okno aplikacji
+*Okno ma z góry ustalone i niezmienialne wymiary
+*Tworzymy planszę i umożliwiamy zamknięcie okna aplikacji
+
+@authors Jakub Sokołowski (nr albumu 261706), Zofia Stypułkowska (nr albumu 261720)
+*/
+
 public class Main {
 
 	public static void main(String args[]) {
