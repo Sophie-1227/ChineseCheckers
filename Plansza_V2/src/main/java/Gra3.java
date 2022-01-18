@@ -7,9 +7,20 @@ import java.util.ArrayList;
 
 public class Gra3 extends Gra {
 	
+	/**
+	*Klasa zawierająca grę dla 2 osób
+	*Uruchamia się ją gdy po uruchomieniu klasy menu wybierzemy 2 graczy i odpalimy server
+	@param currentPlayer znacznik aktywnego gracza, potrzebny do sprawdzania wygranej i poprawności ruchu, oraz wyświetlania wiadomości
+	@param ArrayList<Player> Lista wszystkich graczy na której przesuwamy znacznik aktywnego gracza
+	*/
+	
 	int kolejneMiejsce;
 	ArrayList<Player> listaGraczy;
     Player currentPlayer;
+	
+	/**
+	*Metoda tworząca planszę i ustawiająca pionki dla 3 graczy
+	*/
     
     public Gra3() {
     	this.kolejneMiejsce = 1;
@@ -19,6 +30,12 @@ public class Gra3 extends Gra {
     	this.plansza.ustawFioletowe();
     	this.listaGraczy = new ArrayList<Player>();
     }
+	
+	/**
+	*Metody obsługujące poruszanie się i obsługe listę graczy
+	*Pozwala na masowe rozsyłanie komunikatów do pozostałych graczy
+	*Metoda pozwalająca wysłać komunikat do wszystkich graczy aktywnych (tych na liście)
+	*/
 
     public void dodajGracza(Player player) {
     	this.listaGraczy.add(player);
@@ -59,10 +76,14 @@ public class Gra3 extends Gra {
     		listaGraczy.get(i).output.println(string);
     	}
     }
-    
-
-
-    // Metoda obslugujaca ruch
+	
+    /** 
+    *Metoda obslugujaca ruch
+    *Wywołuje ruch tylko na planszy gry
+    *Sprawdza również czy przeciwnik jest już połączony
+    @exception java.io.IOException.IllegalStateException oznacza to, że przeciwnik nie jest jeszcze połączony
+    */
+	
     public synchronized void move(int x1, int y1, int x2, int y2, Player player) {
         if (player.nextPlayer == null) {
             throw new IllegalStateException("You don't have an opponent yet");
@@ -85,6 +106,11 @@ public class Gra3 extends Gra {
             this.socket = socket;
             this.name = name;
         }
+	    
+	/**
+        *Uruchomienie gry
+	@exception java.io.IOException Sprawdza czy przeciwnik nie opuścił gry
+	*/
 
         @Override
         public void run() {
@@ -105,6 +131,11 @@ public class Gra3 extends Gra {
             }
         }
 
+	/**
+	*Główna obsługa gry 3-osobowej
+        *Implementacja początku gry i obsługa wiadomości do gracza
+	*/    
+	    
         private void setup() throws IOException {
         	// Poczatek gry
             input = new Scanner(socket.getInputStream());
@@ -133,6 +164,11 @@ public class Gra3 extends Gra {
             	//listaGraczy.get(1).output.println("MESSAGE Proszę czekać");
             }
         }
+	    
+	    /**
+	    *Obsługa komend od klienta
+	    *Przetwarzanie sygnałów dotyczących ruchu od klienta
+	    */
 
         private void processCommands() {
             while (input.hasNextLine()) {
