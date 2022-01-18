@@ -4,12 +4,26 @@ import java.util.concurrent.Executors;
 
 
 public class ServerRun {
+	
+	/**
+	*Klasa odpowiadająca za działanie servera głównego
+	*Uruchamia grę n-osobową bazyjąc na wyborze gracza po uruchumieniu menu
+	@param liczbaGraczy
+	@see Menu.java
+	*/
 
 	private int liczbaGraczy;
 	
 	public void setLiczbaGraczy(int n) {
 		liczbaGraczy = n;
 	}
+	
+	/**
+	*Metoda uruchamiająca grę
+	*Wywoływana w klasie Menu
+	@see feature Menu
+	@exception java.io.IOException 
+	*/
 	
     public void start() throws IOException {
     	
