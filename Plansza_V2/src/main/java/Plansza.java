@@ -9,6 +9,12 @@ import java.awt.geom.Ellipse2D;
 
 public class Plansza extends JPanel implements MouseInputListener, MouseMotionListener {
 	
+	/**
+	*Tutaj znajdują się wszystkie metody pozwalające na tworzenie planszy i kolorowanie odpowiednich pól
+	*Jest to wykorzystywane we właściwie wszystkich pozostałych klasach
+	@param x1, y1, x2, y2 współrzędne pola przed i po wykonaniu ruchu
+	*/
+	
 	private boolean[][] dostepnePola;
 	protected Pole[][] uzywanePola;		//Przedtem było private 
 	protected Pionek podniesionyPionek;
@@ -39,6 +45,10 @@ public class Plansza extends JPanel implements MouseInputListener, MouseMotionLi
 		addMouseMotionListener(this);
 	}
 	
+	/**
+	*Pozwala na kopiowanie planszy i przekazywanie jej międzu graczami i serverem
+	*/
+	
 	public Plansza kopiujPlansze() {
 		
 		Plansza nowa = new Plansza();
@@ -54,6 +64,16 @@ public class Plansza extends JPanel implements MouseInputListener, MouseMotionLi
 		return nowa;
 	}
 	
+	/**
+	*Metody obsługujące pionki i pola na planszy
+	@see Pole.java
+	@see feature mouseClicked
+	*/
+	
+	/**
+	*Sprawdza czy dane pole jest zajęte
+	*/
+	
 	public boolean czyJestPionek(int x, int y) {
 		if( x>=0 && x<=24 && y>=0 && y<=16 && this.uzywanePola[x][y] != null && this.uzywanePola[x][y].zwrocPionek() != null) {
 			return true;
@@ -61,11 +81,21 @@ public class Plansza extends JPanel implements MouseInputListener, MouseMotionLi
 		return false;
 	}
 	
+	
+	/**
+	*Usuwa pionek z danego pola
+	*/
+	
 	public void usunPionekNaPlanszy(int x, int y) {
 		if(this.uzywanePola[x][y] != null) {
 			this.uzywanePola[x][y].usunPionek();
 		}
 	}
+	
+	
+	/**
+	*Ustawia tymczasowy pionek na nowym polu, co pomaga w sprawdzeniu poprawności ruchu
+	*/
 	
 	public void ustawTymczasowy(int x, int y) {
 		if(this.uzywanePola[x][y] != null) {
@@ -105,12 +135,20 @@ public class Plansza extends JPanel implements MouseInputListener, MouseMotionLi
 		this.y2 = y2;
 	}
 	
+	/**
+	*Obsługa ruchu na planszy głównej
+	*/
+	
 	public void move(int x1, int y1, int x2, int y2) {
 		Color color = uzywanePola[x1][y1].zwrocPionek().getColor();
 		uzywanePola[x1][y1].usunPionek();
 		uzywanePola[x2][y2].ustawPionek(color);
 		repaint();
 	}
+	
+	/**
+	*Tworzenie pustej planszy
+	*/
 	
 	private void uzupelnijDostepnePola() {
 		int poczatekRzedu[] = {12, 11, 10, 9, 0, 1, 2, 3, 4, 3, 2, 1, 0, 9, 10, 11, 12};
@@ -181,6 +219,20 @@ public class Plansza extends JPanel implements MouseInputListener, MouseMotionLi
 			return true;
 		}
 	}
+	
+	/**
+	*Ustawianie początkowego ustawienia pionków na planszy 
+	@see Client.java
+	@see feature set2
+	@see feature set3
+	@see feature set4
+	@see feature set6
+	@see Main.java
+	@see feature Gra2
+	@see feature Gra3
+	@see feature Gra4
+	@see feature Gra6
+	*/
 	
 	public void ustawCzerwone() {
 		uzywanePola[12][0].ustawPionek(Color.RED);
