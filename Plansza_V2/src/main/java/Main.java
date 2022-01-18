@@ -8,7 +8,8 @@ import javax.swing.*;
 *Okno ma z góry ustalone i niezmienialne wymiary
 *Tworzymy planszę i umożliwiamy zamknięcie okna aplikacji
 
-@authors Jakub Sokołowski (nr albumu 261706), Zofia Stypułkowska (nr albumu 261720)
+@author Jakub Sokołowski (nr albumu 261706)
+@author Zofia Stypułkowska (nr albumu 261720)
 */
 
 public class Main {
