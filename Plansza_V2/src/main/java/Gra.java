@@ -51,6 +51,12 @@ public class Gra {
 		//return false;
 	} */
 	
+	/**
+	*Metoda zmieniająca nawę koloru z typu string do Color
+	*Jeśli kolor nie zawiera sie w kolorach graczy, to zwracamy null
+	@return Color.s Kolor który zawiera sie  w sprawdzanym stringu
+	*/
+	
     protected Color stringToColor(String s) {
     	if(s.startsWith("Czerwony")) {
     		return Color.RED;
@@ -69,13 +75,13 @@ public class Gra {
     }
 	
 	/**
-	*Sprawdzanie ruvhu tylko w przypadku skoku!
+	*Sprawdzanie ruchu tylko w przypadku skoku!
 	*Metoda sprawdzająca poprawność wykonanego ruchu
 	*Sprawdzamy wszystkie możliwości, gdzie legalnie mogliśmy postawić pionek
 	*Patrzymy czy któraś zgadza się z polem, które wybraliśmy
 	*Na koniec zwracamy wartość bool p1 lub p2 lub p3 itd
 	*Co oznacza, że jeśli jedna z nich jest prawdziwa to dostaniemy tru (jako ruch poprawny)
-	@return 
+	@return bool czy wykonany ruch jest poprawnym skokiem
 	*/
 	
 	protected boolean sprawdzSkok(int x1, int y1, int x2, int y2) {
@@ -128,6 +134,17 @@ public class Gra {
 	//return false;
 } 
 	
+	/**
+	*Sprawdzanie ogólne ruchu!
+	*Metoda sprawdzająca poprawność wykonanego ruchu
+	*Sprawdzamy wszystkie zasady poruszania się po planszy
+	*Mamy do spełnienia 3 warunki (poprawność wybranego pola, nie wychodzenie z docelowego trójkąta i ewentualne pominięcie tury)
+	*Jeśli wszystkie są spełnione to dostaniemy true (jako ruch poprawny)
+	@return bool czy wykonany ruch nie łamie żadnych zasad chińskich warcab
+	@see feature sprawdzSkok
+	@see feature czyDocelowe
+	*/
+	
 	protected boolean sprawdzRuch(int x1, int y1, int x2, int y2, String name) {
 		
 		//0. Sprawdzamy, czy ruch nie wychodzi z docelowego trójąta
@@ -150,6 +167,13 @@ public class Gra {
 		
 		return false;
 	}
+	
+	/**
+	*Metoda przechowująca pola docelowego trójkąta dla poszczególnych kolorów
+	*Uzywana do sprawdzenia poprawności ruchu (pomaga w kontrolowaniu, cy gracz nie opóścił swojego trójkąta docelowego)
+	@see feature sprawdzRuch
+	@return bool czy pole na którym jest pionek jest polem docelowym
+	*/
 	
 	private boolean czyDocelowe(int x, int y, String name) {
 		
@@ -260,6 +284,14 @@ public class Gra {
 		
 		return false;
 	}
+	
+	/**
+	*Metoda sprawdzająca czy zaszła wygrana
+	*Sprawdzamy po kolei każde pole w trójkątach docelowych
+	*Patrzymy, czy żadne z nich nie jest null i czy każde z nich jest w kolorze docelowym
+	*Jeśli jest to zwraca nam prawdę
+	@return bool czy zaszła juz wygrana
+	*/
 	
 	protected boolean hasWinner() {
 		// SPRAWDZAMY, CZY WYGRAŁ GRACZ CZERWONY
