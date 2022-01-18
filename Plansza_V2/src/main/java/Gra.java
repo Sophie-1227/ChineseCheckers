@@ -243,6 +243,7 @@ public class Gra {
 		return false;
 	}
 	
+	/*PRZYKŁADOWE SPRAWDZENIE CZY hasWinner działa, żeby nie przesuwać wszystkich pionków
 	protected boolean mockHasWinner() {
 		// SPRAWDZAMY, CZY WYGRAŁ GRACZ CZERWONY
 		if(    
@@ -283,7 +284,7 @@ public class Gra {
 		
 		
 		return false;
-	}
+	} */
 	
 	/**
 	*Metoda sprawdzająca czy zaszła wygrana
