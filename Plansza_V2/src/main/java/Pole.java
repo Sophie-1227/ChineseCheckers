@@ -6,6 +6,12 @@ import java.awt.event.*;
 
 public class Pole extends JPanel implements MouseInputListener, MouseMotionListener {
 	
+	/**
+	*Klasa odpowiadająca za obsługę pól na planszy 
+	@param x współrzędna x pola na planszy
+	@param y współrzędna y pola na planszy
+	*/
+	
 	private Pionek pionek;
 	private Plansza mojaPlansza;
 	private int x;
@@ -44,6 +50,10 @@ public class Pole extends JPanel implements MouseInputListener, MouseMotionListe
 			return false;
 		}
 	}
+	
+	/**
+	*Rysowanie pola na planszy
+	*/
 
 	public void doDrawing(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
@@ -62,11 +72,22 @@ public class Pole extends JPanel implements MouseInputListener, MouseMotionListe
 
 	}
 	
+	/**
+	*Kolorowanie stworzonego pola
+	*/
+	
     @Override
     public void paintComponent(Graphics g) {       
         super.paintComponent(g);
         doDrawing(g);
     }
+	
+	/**
+	*Przemalowywanie klikniętego pola
+	*Jeśli pionek jest podniesiony, to odstawiamy pionek, czyli malujemy nowe pole na kolor podniesionego pionka
+	*Jeśli pionek nie jest podniesiony, to znaczy, że kliknęcie miało na celu jego podniesienie, czyli malujemy pierwotne pole na kolor pola pustego
+	@see feature kopiujPionek
+	*/
 
 	public void mouseClicked(MouseEvent e) {
 		
