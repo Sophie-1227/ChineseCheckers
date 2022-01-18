@@ -8,8 +8,8 @@ import java.util.ArrayList;
 public class Gra3 extends Gra {
 	
 	/**
-	*Klasa zawierająca grę dla 2 osób
-	*Uruchamia się ją gdy po uruchomieniu klasy menu wybierzemy 2 graczy i odpalimy server
+	*Klasa zawierająca grę dla 3 osób
+	*Uruchamia się ją gdy po uruchomieniu klasy menu wybierzemy 3 graczy i odpalimy server
 	@param currentPlayer znacznik aktywnego gracza, potrzebny do sprawdzania wygranej i poprawności ruchu, oraz wyświetlania wiadomości
 	@param ArrayList<Player> Lista wszystkich graczy na której przesuwamy znacznik aktywnego gracza
 	*/
