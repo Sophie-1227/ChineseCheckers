@@ -52,16 +52,6 @@ public class Gra4 extends Gra {
     	this.listaGraczy.add(player);
     }
     
-    private Player nastepnyGracz(Player player) {
-    	for(int i=0; i<=listaGraczy.size()-1; i++) {
-    		
-    		if(listaGraczy.get(i) == player) {
-    			return listaGraczy.get((i+1) % listaGraczy.size());
-    		}
-    	}
-    	return null;
-    }
-    
     private void wyslijDoPrzeciwnikow(Player player, String string) {
     	
     	for(int i=0; i<=listaGraczy.size()-1; i++) {
