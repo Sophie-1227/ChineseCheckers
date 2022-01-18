@@ -8,10 +8,21 @@ import java.util.ArrayList;
 
 public class Gra6 extends Gra {
 	
+	/**
+	*Klasa zawierająca grę dla 6 osób
+	*Uruchamia się ją gdy po uruchomieniu klasy menu wybierzemy 6 graczy i odpalimy server
+	@param currentPlayer znacznik aktywnego gracza, potrzebny do sprawdzania wygranej i poprawności ruchu, oraz wyświetlania wiadomości
+	@param ArrayList<Player> Lista wszystkich graczy na której przesuwamy znacznik aktywnego gracza
+	*/
+	
 	ArrayList<Player> listaGraczy;
     Player currentPlayer;
     int kolejneMiejsce;
     
+	/**
+	*Metoda tworząca planszę i ustawiająca pionki dla 6 graczy
+	*/
+	
     public Gra6() {
     	kolejneMiejsce = 1;
     	this.plansza = new Plansza();
@@ -24,6 +35,12 @@ public class Gra6 extends Gra {
 
     	this.listaGraczy = new ArrayList<Player>();
     }
+	
+	/**
+	*Metody obsługujące poruszanie się i obsługe listę graczy
+	*Pozwala na masowe rozsyłanie komunikatów do pozostałych graczy
+	*Metoda pozwalająca wysłać komunikat do wszystkich graczy aktywnych (tych na liście)
+	*/
 
     private void usunGracza(Player player) {
 
@@ -66,8 +83,13 @@ public class Gra6 extends Gra {
     }
     
 
-
-    // Metoda obslugujaca ruch
+    /** 
+    *Metoda obslugujaca ruch
+    *Wywołuje ruch tylko na planszy gry
+    *Sprawdza również czy przeciwnik jest już połączony
+    @exception java.io.IOException.IllegalStateException oznacza to, że przeciwnik nie jest jeszcze połączony
+    */
+	
     public synchronized void move(int x1, int y1, int x2, int y2, Player player) {
         if (player.nextPlayer == null) {
             throw new IllegalStateException("You don't have an opponent yet");
@@ -91,6 +113,11 @@ public class Gra6 extends Gra {
             this.name = name;
         }
 
+	/**
+        *Uruchomienie gry
+	@exception java.io.IOException Sprawdza czy przeciwnik nie opuścił gry
+	*/
+	    
         @Override
         public void run() {
             try {
@@ -109,6 +136,10 @@ public class Gra6 extends Gra {
                 }
             }
         }
+	/**
+	*Główna obsługa gry 6-osobowej
+        *Implementacja początku gry i obsługa wiadomości do gracza
+	*/ 
 
         private void setup() throws IOException {
         	// Poczatek gry
@@ -150,6 +181,11 @@ public class Gra6 extends Gra {
             	//listaGraczy.get(4).output.println("MESSAGE Proszę czekać");
             }
         }
+	    
+	    /**
+	    *Obsługa komend od klienta
+	    *Przetwarzanie sygnałów dotyczących ruchu od klienta
+	    */
 
         private void processCommands() {
             while (input.hasNextLine()) {
@@ -169,7 +205,16 @@ public class Gra6 extends Gra {
             }
         }
 
-        // Obsluga komendy po zaznaczeniu czegos
+        /**
+	*Obsluga komendy po zaznaczeniu czegos
+	*Implementacja metody sprawdzającej czy zaszło zwycięstwo 
+	@see feature hasWinner
+	*Implementacja metody sprawdzającej poprawność ruchu
+	@see feature sprawdzRuch
+	*Wyświetlanie komunikatów o stanie gry po zakończeniu ruchu //Zwycięstwo, przegrana itd.
+	@SystemRequirment Sprawdzanie poprawności ruchu
+	*/
+	    
         private void processMoveCommand(int x1, int y1, int x2, int  y2) {
             try {
             	//Tu musi być jeszcze metoda sprawdzająca poprawność ruchu (albo lepiej dopisać to w metodzie move)
