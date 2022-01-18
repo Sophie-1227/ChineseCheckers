@@ -11,7 +11,7 @@ public class Gra4 extends Gra {
 	
 	/**
 	*Klasa zawierająca grę dla 4 osób
-	*Uruchamia się ją gdy po uruchomieniu klasy menu wybierzemy 2 graczy i odpalimy server
+	*Uruchamia się ją gdy po uruchomieniu klasy menu wybierzemy 4 graczy i odpalimy server
 	@param currentPlayer znacznik aktywnego gracza, potrzebny do sprawdzania wygranej i poprawności ruchu, oraz wyświetlania wiadomości
 	*/
 	
