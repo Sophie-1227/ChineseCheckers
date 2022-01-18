@@ -141,6 +141,7 @@ public class Gra2 extends Gra {
 	*Implementacja metody sprawdzającej poprawność ruchu
 	@see feature sprawdzRuch
 	*Wyświetlanie komunikatów o stanie gry po zakończeniu ruchu //Zwycięstwo, przegrana itd.
+	@SystemRequirment sprawdzanie i kontrola ruchu
 	*/
         private void processMoveCommand(int x1, int y1, int x2, int  y2) {
             try {
