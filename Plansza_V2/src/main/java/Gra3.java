@@ -188,7 +188,16 @@ public class Gra3 extends Gra {
             }
         }
 
-        // Obsluga komendy po zaznaczeniu czegos
+        /**
+	*Obsluga komendy po zaznaczeniu czegos
+	*Implementacja metody sprawdzającej czy zaszło zwycięstwo 
+	@see feature hasWinner
+	*Implementacja metody sprawdzającej poprawność ruchu
+	@see feature sprawdzRuch
+	*Wyświetlanie komunikatów o stanie gry po zakończeniu ruchu //Zwycięstwo, przegrana itd.
+	@SystemRequirment Sprawdzanie poprawności ruchu
+	*/
+	    
         private void processMoveCommand(int x1, int y1, int x2, int  y2) {
             try {
             	//Tu musi być jeszcze metoda sprawdzająca poprawność ruchu (albo lepiej dopisać to w metodzie move)
